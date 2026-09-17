@@ -118,6 +118,13 @@
         "name": "NewSprite",
         "smoothed": true,
         "userAdded": false
+      },
+      {
+        "file": "assets/CantoraOne-Regular.ttf",
+        "kind": "font",
+        "metadata": "",
+        "name": "assets/CantoraOne-Regular.ttf",
+        "userAdded": false
       }
     ]
   },
@@ -156,7 +163,14 @@
         "gameEditorMode": "instances-editor"
       },
       "objectsGroups": [],
-      "variables": [],
+      "variables": [
+        {
+          "name": "NumberAmount",
+          "persistentUuid": "6f732b08-52a2-4280-a1ef-a6a20633184d",
+          "type": "number",
+          "value": 0
+        }
+      ],
       "instances": [
         {
           "angle": 0,
@@ -213,12 +227,45 @@
           "height": 297,
           "keepRatio": true,
           "layer": "",
-          "name": "Sprite1",
+          "name": "RedSprite",
           "persistentUuid": "ba30846f-c204-4b2d-901c-40a368381e21",
           "width": 278,
           "x": 198,
           "y": 644,
           "zOrder": 4,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 240,
+          "keepRatio": true,
+          "layer": "",
+          "name": "Number",
+          "persistentUuid": "a771ab42-f4c8-459d-a944-090efa89c896",
+          "width": 187,
+          "x": 1536,
+          "y": 801,
+          "zOrder": 5,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "",
+          "name": "BaseBtn",
+          "persistentUuid": "87d5f4c0-6160-488a-ad0f-23ac27ff6b72",
+          "width": 0,
+          "x": 165,
+          "y": 268,
+          "zOrder": 6,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -285,7 +332,7 @@
         {
           "adaptCollisionMaskAutomatically": true,
           "assetStoreId": "",
-          "name": "Sprite1",
+          "name": "RedSprite",
           "persistentUuid": "2a7f2f90-9759-4e18-8c08-e21b7038389b",
           "type": "Sprite",
           "updateIfNotVisible": false,
@@ -343,6 +390,69 @@
               ]
             }
           ]
+        },
+        {
+          "assetStoreId": "",
+          "bold": false,
+          "italic": false,
+          "name": "Number",
+          "persistentUuid": "18ec78f2-f6be-4bef-aff0-143814ddbf66",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "string": "0",
+          "font": "assets/CantoraOne-Regular.ttf",
+          "textAlignment": "center",
+          "characterSize": 200,
+          "color": {
+            "b": 255,
+            "g": 255,
+            "r": 255
+          },
+          "content": {
+            "bold": false,
+            "isOutlineEnabled": false,
+            "isShadowEnabled": false,
+            "italic": false,
+            "outlineColor": "255;255;255",
+            "outlineThickness": 2,
+            "shadowAngle": 90,
+            "shadowBlurRadius": 2,
+            "shadowColor": "0;0;0",
+            "shadowDistance": 4,
+            "shadowOpacity": 127,
+            "smoothed": true,
+            "underlined": false,
+            "text": "0",
+            "font": "assets/CantoraOne-Regular.ttf",
+            "textAlignment": "center",
+            "verticalTextAlignment": "center",
+            "characterSize": 200,
+            "lineHeight": 0,
+            "color": "255;255;255"
+          }
+        },
+        {
+          "assetStoreId": "33302f0b615672a2e96316c096e13ad8d7242adba8bd5709538691894f0eae6e",
+          "name": "BaseBtn",
+          "persistentUuid": "d9005d09-afd0-4833-b8c2-68cd02109ab8",
+          "type": "PanelSpriteButton::PanelSpriteButton",
+          "variant": "Blue Button With Shadow",
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "content": {
+            "LeftPadding": 16,
+            "RightPadding": 16,
+            "PressedLabelOffsetY": 3,
+            "BottomPadding": 32,
+            "TopPadding": 32,
+            "HoveredFadeOutDuration": 0.25,
+            "LabelText": "BUTTON"
+          }
         }
       ],
       "objectsFolderStructure": {
@@ -358,7 +468,13 @@
             "objectName": "Btn3"
           },
           {
-            "objectName": "Sprite1"
+            "objectName": "BaseBtn"
+          },
+          {
+            "objectName": "RedSprite"
+          },
+          {
+            "objectName": "Number"
           }
         ]
       },
@@ -387,7 +503,7 @@
                     "value": "Visible"
                   },
                   "parameters": [
-                    "Sprite1"
+                    "RedSprite"
                   ]
                 }
               ],
@@ -397,7 +513,7 @@
                     "value": "Hide"
                   },
                   "parameters": [
-                    "Sprite1"
+                    "RedSprite"
                   ]
                 }
               ]
@@ -411,7 +527,7 @@
                     "value": "Visible"
                   },
                   "parameters": [
-                    "Sprite1"
+                    "RedSprite"
                   ]
                 }
               ],
@@ -421,10 +537,153 @@
                     "value": "Show"
                   },
                   "parameters": [
-                    "Sprite1",
+                    "RedSprite",
                     ""
                   ]
                 }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "Signals::CompareSignalStrength"
+                  },
+                  "parameters": [
+                    "",
+                    "\"ClickBtn\"",
+                    "\"=\"",
+                    "1",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "NumberAmount",
+                    "!=",
+                    "1"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "NumberAmount",
+                    "=",
+                    "1"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "Signals::CompareSignalStrength"
+                  },
+                  "parameters": [
+                    "",
+                    "\"ClickBtn\"",
+                    "\"=\"",
+                    "2",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "NumberAmount",
+                    "!=",
+                    "2"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "NumberAmount",
+                    "=",
+                    "2"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "Signals::CompareSignalStrength"
+                  },
+                  "parameters": [
+                    "",
+                    "\"ClickBtn\"",
+                    "\"=\"",
+                    "3",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "NumberAmount",
+                    "!=",
+                    "3"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "NumberAmount",
+                    "=",
+                    "3"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "PanelSpriteButton::PanelSpriteButton::IsClicked"
+              },
+              "parameters": [
+                "BaseBtn",
+                ""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "Signals::CallSignal"
+              },
+              "parameters": [
+                "",
+                "\"ClickBtn\"",
+                ""
               ]
             }
           ]
@@ -445,11 +704,12 @@
           "actions": [
             {
               "type": {
-                "value": "Signals::CallSignal"
+                "value": "Signals::CallSignalWithStrength"
               },
               "parameters": [
                 "",
                 "\"ClickBtn\"",
+                "1",
                 ""
               ]
             }
@@ -471,11 +731,12 @@
           "actions": [
             {
               "type": {
-                "value": "Signals::CallSignal"
+                "value": "Signals::CallSignalWithStrength"
               },
               "parameters": [
                 "",
                 "\"ClickBtn\"",
+                "2",
                 ""
               ]
             }
@@ -497,12 +758,42 @@
           "actions": [
             {
               "type": {
-                "value": "Signals::CallSignal"
+                "value": "Signals::CallSignalWithStrength"
               },
               "parameters": [
                 "",
                 "\"ClickBtn\"",
+                "3",
                 ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "TextContainerCapability::TextContainerBehavior::Value"
+              },
+              "parameters": [
+                "Number",
+                "Text",
+                "!=",
+                "ToString(NumberAmount)"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+              },
+              "parameters": [
+                "Number",
+                "Text",
+                "=",
+                "ToString(NumberAmount)"
               ]
             }
           ]
@@ -599,142 +890,16 @@
         {
           "name": "Scale",
           "type": "ScalableCapability::ScalableBehavior"
+        },
+        {
+          "name": "Text",
+          "type": "TextContainerCapability::TextContainerBehavior"
         }
       ]
     }
   ],
   "externalEvents": [],
   "eventsFunctionsExtensions": [
-    {
-      "author": "",
-      "category": "General",
-      "dimension": "",
-      "extensionNamespace": "",
-      "fullName": "Signals",
-      "gdevelopVersion": "",
-      "helpPath": "",
-      "iconUrl": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0ibWRpLXNpZ25hbC12YXJpYW50IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTQsNlY0SDQuMUMxMi45LDQgMjAsMTEuMSAyMCwxOS45VjIwSDE4VjE5LjlDMTgsMTIuMiAxMS44LDYgNCw2TTQsMTBWOEExMiwxMiAwIDAsMSAxNiwyMEgxNEExMCwxMCAwIDAsMCA0LDEwTTQsMTRWMTJBOCw4IDAgMCwxIDEyLDIwSDEwQTYsNiAwIDAsMCA0LDE0TTQsMTZBNCw0IDAgMCwxIDgsMjBINFYxNloiIC8+PC9zdmc+",
-      "name": "Signals",
-      "previewIconUrl": "https://asset-resources.gdevelop.io/public-resources/Icons/a422fe56b8214e5d8b8e5ca6ad8f6b9598f89e6bd3af47c9e25d1777c2534c63_signal-variant.svg",
-      "shortDescription": "Adds Call Signal as an action and On Signal Call as a condition, allowing re-use of multiple actions easily.",
-      "version": "1.0.1",
-      "description": [
-        "Allows for calling and on call signals within the Action Sheet.  ",
-        "Useful for re-use of the same actions for different calls of the same signal.  ",
-        "  ",
-        "Write \"On Signal Call\" then use \"Call Signal\" in your program for use.  ",
-        "Either can be used in front of another, On Signal Call can appear before Call Signal in the action sheet, and vice versa.  "
-      ],
-      "tags": [
-        "functions",
-        "general",
-        "call"
-      ],
-      "authorIds": [
-        "9AJFDUCQG2hiUqekfo0Y9HVSiRX2"
-      ],
-      "dependencies": [],
-      "globalVariables": [],
-      "sceneVariables": [],
-      "eventsFunctions": [
-        {
-          "description": "Calls Signal for use with On Signal Call.",
-          "fullName": "Call Signal",
-          "functionType": "Action",
-          "name": "CallSignal",
-          "sentence": "Call Signal _PARAM1_",
-          "events": [
-            {
-              "type": "BuiltinCommonInstructions::JsCode",
-              "inlineCode": [
-                "const extName = \"Signals\";",
-                "globalThis[extName] = globalThis[extName] || { activeCalls: new Set(), incomingCalls: new Set() };",
-                "const sigName = eventsFunctionContext.getArgument(\"SignalName\");",
-                "globalThis[extName].incomingCalls.add(sigName);"
-              ],
-              "parameterObjects": "",
-              "useStrict": true,
-              "eventsSheetExpanded": false
-            }
-          ],
-          "parameters": [
-            {
-              "description": "Signal Name",
-              "name": "SignalName",
-              "supplementaryInformation": "TextObject::Text",
-              "type": "string"
-            }
-          ],
-          "objectGroups": []
-        },
-        {
-          "description": "Reacts to a Signal Call made by Call Signal with the same Signal Name.",
-          "fullName": "On Signal Call",
-          "functionType": "Condition",
-          "name": "OnSignalCall",
-          "sentence": "Signal _PARAM1_ is called",
-          "events": [
-            {
-              "type": "BuiltinCommonInstructions::JsCode",
-              "inlineCode": [
-                "const extName = \"Signals\";",
-                "const sigName = eventsFunctionContext.getArgument(\"SignalName\");",
-                "eventsFunctionContext.returnValue = !!globalThis[extName].activeCalls.has(sigName);"
-              ],
-              "parameterObjects": "",
-              "useStrict": true,
-              "eventsSheetExpanded": false
-            }
-          ],
-          "parameters": [
-            {
-              "description": "Signal Name",
-              "name": "SignalName",
-              "type": "string"
-            }
-          ],
-          "objectGroups": []
-        },
-        {
-          "fullName": "",
-          "functionType": "Action",
-          "name": "onScenePreEvents",
-          "sentence": "",
-          "events": [
-            {
-              "type": "BuiltinCommonInstructions::JsCode",
-              "inlineCode": [
-                "const extName = \"Signals\";",
-                "globalThis[extName] = globalThis[extName] || { activeCalls: new Set(), incomingCalls: new Set() };",
-                "globalThis[extName].activeCalls = new Set(globalThis[extName].incomingCalls);",
-                "globalThis[extName].incomingCalls.clear();"
-              ],
-              "parameterObjects": "",
-              "useStrict": true,
-              "eventsSheetExpanded": false
-            }
-          ],
-          "parameters": [],
-          "objectGroups": []
-        }
-      ],
-      "eventsFunctionsFolderStructure": {
-        "folderName": "__ROOT",
-        "children": [
-          {
-            "functionName": "CallSignal"
-          },
-          {
-            "functionName": "OnSignalCall"
-          },
-          {
-            "functionName": "onScenePreEvents"
-          }
-        ]
-      },
-      "eventsBasedBehaviors": [],
-      "eventsBasedObjects": []
-    },
     {
       "author": "",
       "category": "User interface",
@@ -5062,6 +5227,247 @@
           ]
         }
       ]
+    },
+    {
+      "author": "",
+      "category": "General",
+      "dimension": "",
+      "extensionNamespace": "",
+      "fullName": "Signals",
+      "gdevelopVersion": "",
+      "helpPath": "",
+      "iconUrl": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0ibWRpLXNpZ25hbC12YXJpYW50IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTQsNlY0SDQuMUMxMi45LDQgMjAsMTEuMSAyMCwxOS45VjIwSDE4VjE5LjlDMTgsMTIuMiAxMS44LDYgNCw2TTQsMTBWOEExMiwxMiAwIDAsMSAxNiwyMEgxNEExMCwxMCAwIDAsMCA0LDEwTTQsMTRWMTJBOCw4IDAgMCwxIDEyLDIwSDEwQTYsNiAwIDAsMCA0LDE0TTQsMTZBNCw0IDAgMCwxIDgsMjBINFYxNloiIC8+PC9zdmc+",
+      "name": "Signals",
+      "previewIconUrl": "https://asset-resources.gdevelop.io/public-resources/Icons/a422fe56b8214e5d8b8e5ca6ad8f6b9598f89e6bd3af47c9e25d1777c2534c63_signal-variant.svg",
+      "shortDescription": "Adds Call Signal as an action and On Signal Call as a condition, allowing re-use of multiple actions easily. Each signal can have its own strength value.",
+      "version": "1.1.0",
+      "description": [
+        "Allows for calling and on call signals within the Action Sheet.  ",
+        "Useful for re-use of the same actions for different calls of the same signal.  ",
+        "  ",
+        "Write \"On Signal Call\" then use \"Call Signal\" in your program for use.  ",
+        "Either can be used in front of another, On Signal Call can appear before Call Signal in the action sheet, and vice versa.  ",
+        "  ",
+        "Each Signal can be given its own strength value, which can be checked against other values.  "
+      ],
+      "tags": [
+        "general",
+        "signals",
+        "signal",
+        "calls",
+        "functions"
+      ],
+      "authorIds": [
+        "9AJFDUCQG2hiUqekfo0Y9HVSiRX2"
+      ],
+      "dependencies": [],
+      "globalVariables": [],
+      "sceneVariables": [],
+      "eventsFunctions": [
+        {
+          "description": "Calls a Signal for use with On Signal Call.",
+          "fullName": "Call Signal",
+          "functionType": "Action",
+          "name": "CallSignal",
+          "sentence": "Call Signal _PARAM1_",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::JsCode",
+              "inlineCode": [
+                "const extName = \"Signals\";",
+                "globalThis[extName] = globalThis[extName] || { activeCalls: new Map(), incomingCalls: new Map() };",
+                "const sigName = eventsFunctionContext.getArgument(\"SignalName\");",
+                "globalThis[extName].incomingCalls.set(sigName, undefined);"
+              ],
+              "parameterObjects": "",
+              "useStrict": true,
+              "eventsSheetExpanded": false
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Signal Name",
+              "name": "SignalName",
+              "supplementaryInformation": "TextObject::Text",
+              "type": "string"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Reacts to a Signal Call.",
+          "fullName": "On Signal Call",
+          "functionType": "Condition",
+          "name": "OnSignalCall",
+          "sentence": "Signal _PARAM1_ is called",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::JsCode",
+              "inlineCode": [
+                "const extName = \"Signals\";",
+                "const sigName = eventsFunctionContext.getArgument(\"SignalName\");",
+                "eventsFunctionContext.returnValue = !!globalThis[extName].activeCalls.has(sigName);"
+              ],
+              "parameterObjects": "",
+              "useStrict": true,
+              "eventsSheetExpanded": false
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Signal Name",
+              "name": "SignalName",
+              "type": "string"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "fullName": "",
+          "functionType": "Action",
+          "name": "onScenePreEvents",
+          "sentence": "",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::JsCode",
+              "inlineCode": [
+                "const extName = \"Signals\";",
+                "globalThis[extName] = globalThis[extName] || { activeCalls: new Map(), incomingCalls: new Map() };",
+                "globalThis[extName].activeCalls = new Map(globalThis[extName].incomingCalls);",
+                "globalThis[extName].incomingCalls.clear();"
+              ],
+              "parameterObjects": "",
+              "useStrict": true,
+              "eventsSheetExpanded": false
+            }
+          ],
+          "parameters": [],
+          "objectGroups": []
+        },
+        {
+          "description": "Compare a Signal's Strength to a value.",
+          "fullName": "Compare Signal Strength",
+          "functionType": "Condition",
+          "name": "CompareSignalStrength",
+          "sentence": "_PARAM1_ strength is _PARAM2_ _PARAM3_",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::JsCode",
+              "inlineCode": [
+                "const extName = \"Signals\";\r",
+                "const sigName = eventsFunctionContext.getArgument(\"SignalName\");\r",
+                "const operator = eventsFunctionContext.getArgument(\"Operator\");\r",
+                "const compareValue = eventsFunctionContext.getArgument(\"Strength\");\r",
+                "if (!operator) return;\r",
+                "if (!globalThis[extName] || !globalThis[extName].activeCalls.has(sigName)) {\r",
+                "    eventsFunctionContext.returnValue = false;\r",
+                "    return;\r",
+                "}\r",
+                "\r",
+                "const actualStrength = globalThis[extName].activeCalls.get(sigName);\r",
+                "if (actualStrength === undefined) {\r",
+                "    eventsFunctionContext.returnValue = false;\r",
+                "    return;\r",
+                "}\r",
+                "\r",
+                "\r",
+                "let comparator = false;\r",
+                "switch(operator) {\r",
+                "    case \"=\": comparator = (actualStrength === compareValue); break;\r",
+                "    case \"<\": comparator = (actualStrength < compareValue); break;\r",
+                "    case \">\": comparator = (actualStrength > compareValue); break;\r",
+                "    case \"≤\": comparator = (actualStrength <= compareValue); break;\r",
+                "    case \"≥\": comparator = (actualStrength >= compareValue); break;\r",
+                "    case \"≠\": comparator = (actualStrength !== compareValue); break;\r",
+                "    default: comparator = (actualStrength === compareValue);\r",
+                "}\r",
+                "\r",
+                "eventsFunctionContext.returnValue = comparator;"
+              ],
+              "parameterObjects": "",
+              "useStrict": true,
+              "eventsSheetExpanded": false
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Signal Name",
+              "name": "SignalName",
+              "type": "string"
+            },
+            {
+              "description": "Sign of the test",
+              "name": "Operator",
+              "supplementaryInformation": "[\"=\",\"<\",\">\",\"≤\",\"≥\",\"≠\"]",
+              "type": "stringWithSelector"
+            },
+            {
+              "description": "Value to compare",
+              "name": "Strength",
+              "type": "expression"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Calls a Signal for use with On Signal Call with a strength value.",
+          "fullName": "Call Signal with Strength",
+          "functionType": "Action",
+          "name": "CallSignalWithStrength",
+          "sentence": "Call Signal _PARAM1_ with _PARAM2_ strength",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::JsCode",
+              "inlineCode": [
+                "const extName = \"Signals\";\r",
+                "globalThis[extName] = globalThis[extName] || { activeCalls: new Map(), incomingCalls: new Map() };\r",
+                "const sigName = eventsFunctionContext.getArgument(\"SignalName\");\r",
+                "const strength = eventsFunctionContext.getArgument(\"Strength\");\r",
+                "globalThis[extName].incomingCalls.set(sigName, strength);"
+              ],
+              "parameterObjects": "",
+              "useStrict": true,
+              "eventsSheetExpanded": false
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Signal Name",
+              "name": "SignalName",
+              "supplementaryInformation": "TextObject::Text",
+              "type": "string"
+            },
+            {
+              "description": "Strength",
+              "name": "Strength",
+              "type": "expression"
+            }
+          ],
+          "objectGroups": []
+        }
+      ],
+      "eventsFunctionsFolderStructure": {
+        "folderName": "__ROOT",
+        "children": [
+          {
+            "functionName": "CallSignal"
+          },
+          {
+            "functionName": "CallSignalWithStrength"
+          },
+          {
+            "functionName": "OnSignalCall"
+          },
+          {
+            "functionName": "CompareSignalStrength"
+          },
+          {
+            "functionName": "onScenePreEvents"
+          }
+        ]
+      },
+      "eventsBasedBehaviors": [],
+      "eventsBasedObjects": []
     }
   ],
   "externalLayouts": []
