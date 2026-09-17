@@ -9,8 +9,8 @@
   "iconUrl": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0ibWRpLXNpZ25hbC12YXJpYW50IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTQsNlY0SDQuMUMxMi45LDQgMjAsMTEuMSAyMCwxOS45VjIwSDE4VjE5LjlDMTgsMTIuMiAxMS44LDYgNCw2TTQsMTBWOEExMiwxMiAwIDAsMSAxNiwyMEgxNEExMCwxMCAwIDAsMCA0LDEwTTQsMTRWMTJBOCw4IDAgMCwxIDEyLDIwSDEwQTYsNiAwIDAsMCA0LDE0TTQsMTZBNCw0IDAgMCwxIDgsMjBINFYxNloiIC8+PC9zdmc+",
   "name": "Signals",
   "previewIconUrl": "https://asset-resources.gdevelop.io/public-resources/Icons/a422fe56b8214e5d8b8e5ca6ad8f6b9598f89e6bd3af47c9e25d1777c2534c63_signal-variant.svg",
-  "shortDescription": "Adds Call Signal as an action and On Signal Call as a condition, allowing re-use of multiple actions easily. Each signal can have its own strength value.",
-  "version": "1.1.0",
+  "shortDescription": "Adds Call Signal as an action and On Signal Call as a condition, allowing re-use of multiple actions easily. Each signal can be called with or without a strength value.",
+  "version": "1.1.1",
   "description": [
     "Allows for calling and on call signals within the Action Sheet.  ",
     "Useful for re-use of the same actions for different calls of the same signal.  ",
@@ -18,7 +18,7 @@
     "Write \"On Signal Call\" then use \"Call Signal\" in your program for use.  ",
     "Either can be used in front of another, On Signal Call can appear before Call Signal in the action sheet, and vice versa.  ",
     "  ",
-    "Each Signal can be given its own strength value, which can be checked against other values.  "
+    "Each Signal can be given its own strength value, which can be checked with Signals::GetStrength(\"Signal Name\").  "
   ],
   "tags": [
     "general",
@@ -45,8 +45,8 @@
           "type": "BuiltinCommonInstructions::JsCode",
           "inlineCode": [
             "const extName = \"Signals\";",
-            "globalThis[extName] = globalThis[extName] || { activeCalls: new Map(), incomingCalls: new Map() };",
             "const sigName = eventsFunctionContext.getArgument(\"SignalName\");",
+            "globalThis[extName] = globalThis[extName] || { activeCalls: new Map(), incomingCalls: new Map() };",
             "globalThis[extName].incomingCalls.set(sigName, undefined);"
           ],
           "parameterObjects": "",
@@ -65,7 +65,7 @@
       "objectGroups": []
     },
     {
-      "description": "Reacts to a Signal Call.",
+      "description": "Reacts to a Signal call.",
       "fullName": "On Signal Call",
       "functionType": "Condition",
       "name": "OnSignalCall",
@@ -115,71 +115,6 @@
       "objectGroups": []
     },
     {
-      "description": "Compare a Signal's Strength to a value.",
-      "fullName": "Compare Signal Strength",
-      "functionType": "Condition",
-      "name": "CompareSignalStrength",
-      "sentence": "_PARAM1_ strength is _PARAM2_ _PARAM3_",
-      "events": [
-        {
-          "type": "BuiltinCommonInstructions::JsCode",
-          "inlineCode": [
-            "const extName = \"Signals\";\r",
-            "const sigName = eventsFunctionContext.getArgument(\"SignalName\");\r",
-            "const operator = eventsFunctionContext.getArgument(\"Operator\");\r",
-            "const compareValue = eventsFunctionContext.getArgument(\"Strength\");\r",
-            "if (!operator) return;\r",
-            "if (!globalThis[extName] || !globalThis[extName].activeCalls.has(sigName)) {\r",
-            "    eventsFunctionContext.returnValue = false;\r",
-            "    return;\r",
-            "}\r",
-            "\r",
-            "const actualStrength = globalThis[extName].activeCalls.get(sigName);\r",
-            "if (actualStrength === undefined) {\r",
-            "    eventsFunctionContext.returnValue = false;\r",
-            "    return;\r",
-            "}\r",
-            "\r",
-            "\r",
-            "let comparator = false;\r",
-            "switch(operator) {\r",
-            "    case \"=\": comparator = (actualStrength === compareValue); break;\r",
-            "    case \"<\": comparator = (actualStrength < compareValue); break;\r",
-            "    case \">\": comparator = (actualStrength > compareValue); break;\r",
-            "    case \"≤\": comparator = (actualStrength <= compareValue); break;\r",
-            "    case \"≥\": comparator = (actualStrength >= compareValue); break;\r",
-            "    case \"≠\": comparator = (actualStrength !== compareValue); break;\r",
-            "    default: comparator = (actualStrength === compareValue);\r",
-            "}\r",
-            "\r",
-            "eventsFunctionContext.returnValue = comparator;"
-          ],
-          "parameterObjects": "",
-          "useStrict": true,
-          "eventsSheetExpanded": false
-        }
-      ],
-      "parameters": [
-        {
-          "description": "Signal Name",
-          "name": "SignalName",
-          "type": "string"
-        },
-        {
-          "description": "Sign of the test",
-          "name": "Operator",
-          "supplementaryInformation": "[\"=\",\"<\",\">\",\"≤\",\"≥\",\"≠\"]",
-          "type": "stringWithSelector"
-        },
-        {
-          "description": "Value to compare",
-          "name": "Strength",
-          "type": "expression"
-        }
-      ],
-      "objectGroups": []
-    },
-    {
       "description": "Calls a Signal for use with On Signal Call with a strength value.",
       "fullName": "Call Signal with Strength",
       "functionType": "Action",
@@ -190,9 +125,9 @@
           "type": "BuiltinCommonInstructions::JsCode",
           "inlineCode": [
             "const extName = \"Signals\";\r",
-            "globalThis[extName] = globalThis[extName] || { activeCalls: new Map(), incomingCalls: new Map() };\r",
             "const sigName = eventsFunctionContext.getArgument(\"SignalName\");\r",
             "const strength = eventsFunctionContext.getArgument(\"Strength\");\r",
+            "globalThis[extName] = globalThis[extName] || { activeCalls: new Map(), incomingCalls: new Map() };\r",
             "globalThis[extName].incomingCalls.set(sigName, strength);"
           ],
           "parameterObjects": "",
@@ -214,6 +149,43 @@
         }
       ],
       "objectGroups": []
+    },
+    {
+      "description": "Gets the current strength of a Signal.",
+      "fullName": "Get Strength",
+      "functionType": "Expression",
+      "name": "GetStrength",
+      "sentence": "",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": [
+            "const extName = \"Signals\";",
+            "const sigName = eventsFunctionContext.getArgument(\"SignalName\");",
+            "let strength = -1;",
+            "",
+            "if (globalThis[extName] && globalThis[extName].activeCalls.has(sigName)) {",
+            "    const storedStrength = globalThis[extName].activeCalls.get(sigName);",
+            "    if (storedStrength !== undefined) strength = storedStrength;",
+            "}",
+            "eventsFunctionContext.returnValue = strength;"
+          ],
+          "parameterObjects": "",
+          "useStrict": true,
+          "eventsSheetExpanded": false
+        }
+      ],
+      "expressionType": {
+        "type": "expression"
+      },
+      "parameters": [
+        {
+          "description": "Signal Name",
+          "name": "SignalName",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
     }
   ],
   "eventsFunctionsFolderStructure": {
@@ -229,7 +201,7 @@
         "functionName": "OnSignalCall"
       },
       {
-        "functionName": "CompareSignalStrength"
+        "functionName": "GetStrength"
       },
       {
         "functionName": "onScenePreEvents"
