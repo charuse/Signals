@@ -1280,7 +1280,7 @@
       "name": "Signals",
       "previewIconUrl": "https://asset-resources.gdevelop.io/public-resources/Icons/a422fe56b8214e5d8b8e5ca6ad8f6b9598f89e6bd3af47c9e25d1777c2534c63_signal-variant.svg",
       "shortDescription": "Adds Call Signal as an action and On Signal Call as a condition, allowing re-use of multiple actions easily. Each signal can be called with or without a strength value.",
-      "version": "1.2.2",
+      "version": "1.2.3",
       "description": [
         "Allows for calling and on call signals within the Action Sheet.  ",
         "Useful for re-use of the same actions for different calls of the same signal.  ",
@@ -1316,7 +1316,7 @@
               "inlineCode": [
                 "const extName = \"Signals\";",
                 "const sigName = eventsFunctionContext.getArgument(\"SignalName\");",
-                "globalThis[extName] = globalThis[extName] || { ",
+                "globalThis[extName] = globalThis[extName] || {",
                 "    activeCalls: new Map(), incomingCalls: new Map(),",
                 "    totalCalls: new Map(), signalStrengths: new Map()",
                 "};",
@@ -1341,7 +1341,7 @@
           "objectGroups": []
         },
         {
-          "description": "Reacts to a Signal call.",
+          "description": "Reacts to a Signal call when it happens.",
           "fullName": "On Signal Call",
           "functionType": "Condition",
           "name": "OnSignalCall",
@@ -1378,7 +1378,7 @@
               "type": "BuiltinCommonInstructions::JsCode",
               "inlineCode": [
                 "const extName = \"Signals\";",
-                "globalThis[extName] = globalThis[extName] || { ",
+                "globalThis[extName] = globalThis[extName] || {",
                 "    activeCalls: new Map(), ",
                 "    incomingCalls: new Map(),",
                 "    totalCalls: new Map(),",
@@ -1408,7 +1408,7 @@
                 "const extName = \"Signals\";\r",
                 "const sigName = eventsFunctionContext.getArgument(\"SignalName\");\r",
                 "const strength = eventsFunctionContext.getArgument(\"Strength\");\r",
-                "globalThis[extName] = globalThis[extName] || { \r",
+                "globalThis[extName] = globalThis[extName] || {\r",
                 "    activeCalls: new Map(), incomingCalls: new Map(),\r",
                 "    totalCalls: new Map(), signalStrengths: new Map()\r",
                 "};\r",
@@ -1449,7 +1449,7 @@
               "inlineCode": [
                 "const extName = \"Signals\";",
                 "const sigName = eventsFunctionContext.getArgument(\"SignalName\");",
-                "let strength = -1; ",
+                "let strength = -1;",
                 "if (globalThis[extName] && globalThis[extName].signalStrengths.has(sigName)) {",
                 "    strength = globalThis[extName].signalStrengths.get(sigName);",
                 "}",
@@ -1520,7 +1520,7 @@
                 "const extName = \"Signals\";",
                 "const sigName = eventsFunctionContext.getArgument(\"SignalName\");",
                 "const strength = eventsFunctionContext.getArgument(\"Strength\");",
-                "globalThis[extName] = globalThis[extName] || { ",
+                "globalThis[extName] = globalThis[extName] || {",
                 "    activeCalls: new Map(), incomingCalls: new Map(),",
                 "    totalCalls: new Map(), signalStrengths: new Map()",
                 "};",
@@ -1547,7 +1547,7 @@
           "objectGroups": []
         },
         {
-          "description": "Checks if a Signal has been called.",
+          "description": "Checks if a Signal has been called previously.",
           "fullName": "Signal Has Been Called",
           "functionType": "Condition",
           "name": "SignalHasBeenCalled",
