@@ -175,6 +175,12 @@
           "persistentUuid": "81f3ea61-5150-4252-ae03-5185da7b804d",
           "type": "number",
           "value": 0
+        },
+        {
+          "name": "HasBeenCalled",
+          "persistentUuid": "a44617c3-c23c-43b3-b5b8-f14dc5bbfe77",
+          "type": "boolean",
+          "value": false
         }
       ],
       "instances": [
@@ -250,7 +256,7 @@
           "height": 240,
           "keepRatio": true,
           "layer": "",
-          "name": "Number",
+          "name": "ButtonNumber",
           "persistentUuid": "a771ab42-f4c8-459d-a944-090efa89c896",
           "width": 187,
           "x": 1536,
@@ -282,7 +288,7 @@
           "height": 0,
           "keepRatio": true,
           "layer": "",
-          "name": "Count",
+          "name": "TotalCallCount",
           "persistentUuid": "cdf1daa4-a5da-477c-a14c-29900d19c236",
           "width": 0,
           "x": 1564,
@@ -298,7 +304,7 @@
           "height": 0,
           "keepRatio": true,
           "layer": "",
-          "name": "Count2",
+          "name": "StrengthCount",
           "persistentUuid": "08ec0e36-e796-4807-ad76-65c79b4956fc",
           "width": 0,
           "x": 683,
@@ -320,6 +326,22 @@
           "x": 642,
           "y": 988,
           "zOrder": 9,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "",
+          "name": "Called",
+          "persistentUuid": "211956db-9154-400b-b6b5-a92525b6659e",
+          "width": 0,
+          "x": 1178,
+          "y": 1003,
+          "zOrder": 10,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -449,7 +471,7 @@
           "assetStoreId": "",
           "bold": false,
           "italic": false,
-          "name": "Number",
+          "name": "ButtonNumber",
           "persistentUuid": "18ec78f2-f6be-4bef-aff0-143814ddbf66",
           "smoothed": true,
           "type": "TextObject::Text",
@@ -512,7 +534,7 @@
           "assetStoreId": "",
           "bold": false,
           "italic": false,
-          "name": "Count",
+          "name": "TotalCallCount",
           "persistentUuid": "b5cb0231-7fe0-44c1-8d23-40b8abb7a194",
           "smoothed": true,
           "type": "TextObject::Text",
@@ -556,7 +578,7 @@
           "assetStoreId": "",
           "bold": false,
           "italic": false,
-          "name": "Count2",
+          "name": "StrengthCount",
           "persistentUuid": "da0a6c12-2c7a-4f39-8f83-6c4b86cc50cf",
           "smoothed": true,
           "type": "TextObject::Text",
@@ -614,6 +636,50 @@
             "HoveredFadeOutDuration": 0.25,
             "LabelText": "Add 1"
           }
+        },
+        {
+          "assetStoreId": "",
+          "bold": false,
+          "italic": false,
+          "name": "Called",
+          "persistentUuid": "9140558e-d1a4-4aef-90b7-a16ece1462ec",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "string": "false",
+          "font": "assets/CantoraOne-Regular.ttf",
+          "textAlignment": "center",
+          "characterSize": 100,
+          "color": {
+            "b": 255,
+            "g": 255,
+            "r": 255
+          },
+          "content": {
+            "bold": false,
+            "isOutlineEnabled": false,
+            "isShadowEnabled": false,
+            "italic": false,
+            "outlineColor": "255;255;255",
+            "outlineThickness": 2,
+            "shadowAngle": 90,
+            "shadowBlurRadius": 2,
+            "shadowColor": "0;0;0",
+            "shadowDistance": 4,
+            "shadowOpacity": 127,
+            "smoothed": true,
+            "underlined": false,
+            "text": "false",
+            "font": "assets/CantoraOne-Regular.ttf",
+            "textAlignment": "center",
+            "verticalTextAlignment": "center",
+            "characterSize": 100,
+            "lineHeight": 0,
+            "color": "255;255;255"
+          }
         }
       ],
       "objectsFolderStructure": {
@@ -638,13 +704,16 @@
             "objectName": "RedSprite"
           },
           {
-            "objectName": "Number"
+            "objectName": "ButtonNumber"
           },
           {
-            "objectName": "Count"
+            "objectName": "TotalCallCount"
           },
           {
-            "objectName": "Count2"
+            "objectName": "StrengthCount"
+          },
+          {
+            "objectName": "Called"
           }
         ]
       },
@@ -979,7 +1048,7 @@
                 "value": "TextContainerCapability::TextContainerBehavior::Value"
               },
               "parameters": [
-                "Number",
+                "ButtonNumber",
                 "Text",
                 "!=",
                 "ToString(NumberAmount)"
@@ -992,7 +1061,7 @@
                 "value": "TextContainerCapability::TextContainerBehavior::SetValue"
               },
               "parameters": [
-                "Number",
+                "ButtonNumber",
                 "Text",
                 "=",
                 "ToString(NumberAmount)"
@@ -1008,7 +1077,7 @@
                 "value": "TextContainerCapability::TextContainerBehavior::Value"
               },
               "parameters": [
-                "Count",
+                "TotalCallCount",
                 "Text",
                 "!=",
                 "ToString(TotalCallAmt)"
@@ -1021,7 +1090,7 @@
                 "value": "TextContainerCapability::TextContainerBehavior::SetValue"
               },
               "parameters": [
-                "Count",
+                "TotalCallCount",
                 "Text",
                 "=",
                 "ToString(TotalCallAmt)"
@@ -1037,7 +1106,7 @@
                 "value": "TextContainerCapability::TextContainerBehavior::Value"
               },
               "parameters": [
-                "Count2",
+                "StrengthCount",
                 "Text",
                 "!=",
                 "ToString(Signals::GetStrength(\"ClickBtn\"))"
@@ -1050,10 +1119,49 @@
                 "value": "TextContainerCapability::TextContainerBehavior::SetValue"
               },
               "parameters": [
-                "Count2",
+                "StrengthCount",
                 "Text",
                 "=",
                 "ToString(Signals::GetStrength(\"ClickBtn\"))"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "Signals::SignalHasBeenCalled"
+              },
+              "parameters": [
+                "",
+                "\"ClickBtn\"",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "TextContainerCapability::TextContainerBehavior::Value"
+              },
+              "parameters": [
+                "Called",
+                "Text",
+                "!=",
+                "\"true\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+              },
+              "parameters": [
+                "Called",
+                "Text",
+                "=",
+                "\"true\""
               ]
             }
           ]
@@ -1172,7 +1280,7 @@
       "name": "Signals",
       "previewIconUrl": "https://asset-resources.gdevelop.io/public-resources/Icons/a422fe56b8214e5d8b8e5ca6ad8f6b9598f89e6bd3af47c9e25d1777c2534c63_signal-variant.svg",
       "shortDescription": "Adds Call Signal as an action and On Signal Call as a condition, allowing re-use of multiple actions easily. Each signal can be called with or without a strength value.",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "description": [
         "Allows for calling and on call signals within the Action Sheet.  ",
         "Useful for re-use of the same actions for different calls of the same signal.  ",
@@ -1437,6 +1545,38 @@
             }
           ],
           "objectGroups": []
+        },
+        {
+          "description": "Checks if a Signal has been called.",
+          "fullName": "Signal Has Been Called",
+          "functionType": "Condition",
+          "name": "SignalHasBeenCalled",
+          "sentence": "Signal _PARAM1_ has been called",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::JsCode",
+              "inlineCode": [
+                "const extName = \"Signals\";",
+                "const sigName = eventsFunctionContext.getArgument(\"SignalName\");",
+                "let called = false;",
+                "if (globalThis[extName] && globalThis[extName].totalCalls.has(sigName)) {",
+                "    if (globalThis[extName].totalCalls.get(sigName) > 0) called = true;",
+                "}",
+                "eventsFunctionContext.returnValue = called;"
+              ],
+              "parameterObjects": "",
+              "useStrict": true,
+              "eventsSheetExpanded": false
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Signal Name",
+              "name": "SignalName",
+              "type": "string"
+            }
+          ],
+          "objectGroups": []
         }
       ],
       "eventsFunctionsFolderStructure": {
@@ -1456,6 +1596,9 @@
           },
           {
             "functionName": "OnSignalCall"
+          },
+          {
+            "functionName": "SignalHasBeenCalled"
           },
           {
             "functionName": "GetStrength"

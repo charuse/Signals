@@ -10,7 +10,7 @@
   "name": "Signals",
   "previewIconUrl": "https://asset-resources.gdevelop.io/public-resources/Icons/a422fe56b8214e5d8b8e5ca6ad8f6b9598f89e6bd3af47c9e25d1777c2534c63_signal-variant.svg",
   "shortDescription": "Adds Call Signal as an action and On Signal Call as a condition, allowing re-use of multiple actions easily. Each signal can be called with or without a strength value.",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": [
     "Allows for calling and on call signals within the Action Sheet.  ",
     "Useful for re-use of the same actions for different calls of the same signal.  ",
@@ -275,6 +275,38 @@
         }
       ],
       "objectGroups": []
+    },
+    {
+      "description": "Checks if a Signal has been called.",
+      "fullName": "Signal Has Been Called",
+      "functionType": "Condition",
+      "name": "SignalHasBeenCalled",
+      "sentence": "Signal _PARAM1_ has been called",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": [
+            "const extName = \"Signals\";",
+            "const sigName = eventsFunctionContext.getArgument(\"SignalName\");",
+            "let called = false;",
+            "if (globalThis[extName] && globalThis[extName].totalCalls.has(sigName)) {",
+            "    if (globalThis[extName].totalCalls.get(sigName) > 0) called = true;",
+            "}",
+            "eventsFunctionContext.returnValue = called;"
+          ],
+          "parameterObjects": "",
+          "useStrict": true,
+          "eventsSheetExpanded": false
+        }
+      ],
+      "parameters": [
+        {
+          "description": "Signal Name",
+          "name": "SignalName",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
     }
   ],
   "eventsFunctionsFolderStructure": {
@@ -294,6 +326,9 @@
       },
       {
         "functionName": "OnSignalCall"
+      },
+      {
+        "functionName": "SignalHasBeenCalled"
       },
       {
         "functionName": "GetStrength"
